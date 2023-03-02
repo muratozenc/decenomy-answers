@@ -1,0 +1,31 @@
+<!-- Developed by Murat OZENC Feb 25 2023 -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Link Observing</title>
+  </head>
+  <body>
+    <a href="#">Click Me To Toggle</a>
+    <script>
+        
+        class observer {
+            constructor(link) {
+                this.isOpen = false;
+                this.link = link;
+                this.link.addEventListener('click', this.handleClick.bind(this));
+            }
+
+            handleClick() {
+                this.isOpen = !this.isOpen;
+                console.log(this.isOpen);
+            }
+        }
+
+        const theLink = document.querySelector('a');
+        const observable = new observer(theLink);
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!-- Developed by Murat OZENC Feb 25 2023 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animating a Square</title>
+	<style>
+		#square {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			background-color: blue;
+			left: 0px;
+			top: 0px;
+		}
+	</style>
+</head>
+<body>
+	<div id="square"></div>
+	<script>
+		let square = document.getElementById("square");
+		let left = 0;
+		function moveSquare() {
+			left += 10;
+			square.style.left = left + "px";
+			if (left < window.innerWidth - 100) {
+				requestAnimationFrame(moveSquare);
+			}
+		}
+		requestAnimationFrame(moveSquare);
+	</script>
+</body>
+</html>

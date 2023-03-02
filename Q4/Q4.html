@@ -1,0 +1,41 @@
+<!-- Developed by Murat OZENC Feb 25 2023 -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Webp Check</title>
+  </head>
+  <body>
+    <img src="image1.webp">
+    <img src="image2.webp">
+    <div class="bg-image" style="background-image: url('image3.webp');"></div>
+    <script>
+        function supportsWebp() {
+            const elem = document.createElement('canvas');
+            
+            if (!!(elem.getContext && elem.getContext('2d'))) {
+                return elem.toDataURL('image/webp').indexOf('data:image/webp') == 0;
+            }
+            
+            return false;
+        }
+
+        if (!supportsWebp()) {
+            const imgs = document.querySelectorAll('img');
+            
+            imgs.forEach(img => {
+                const src = img.src;
+                const webpSrc = src.replace(/\.(png|jpg|jpeg)$/, '.webp');
+                img.src = webpSrc;
+            });
+            
+            const div = document.querySelector('.bg-image');
+            const bg = div.style.backgroundImage;
+            const src = bg.replace(/url\(['"]?(.*?)['"]?\)/i, '$1');
+            const webpSrc = src.replace(/\.(png|jpg|jpeg)$/, '.webp');
+            div.style.backgroundImage = `url(${webpSrc})`;
+        }
+    </script>
+  </body>
+</html>
